@@ -20,17 +20,27 @@ body {
 }
 
 h2, label, p{
-    color: #fff;
+    color: #EEEEEE;
     margin: 8px 0;
 }
 
+/* input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid white;
+    margin-top: 20px;
+} */
+
 input[type=text] {
     transition: width 0.5s ease-in-out;
-    width: calc(100% - 110px);
+    width: calc(100% - 120px);
     height: 25px;
     padding-left: 10px;
     border-color: #fff;
     border-radius: 10px;
+    background-image: url(https://www.pinclipart.com/picdir/middle/170-1700389_search-apple-magnifying-glass-icon-clipart.png);
     background-position-x: right;
     background-position-y: center;
     background-size: 35px;
@@ -42,6 +52,8 @@ input[type=text]:focus {
 }
 
 input[type="text"]::placeholder {
+    padding-top: 10px;
+    padding-left: 3px;
     text-align: left;
 }
   
@@ -57,7 +69,7 @@ input[type="text"]::placeholder {
 button {
     background:#debff4;
     color: #fff;
-    padding: 8px;
+    padding: 10px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -67,7 +79,7 @@ button {
 }
 
 button:hover {
-    background: #b5a0d6;
+    background: #8b48d7;
 }
 
 #temp-div p{
@@ -80,14 +92,15 @@ button:hover {
 }
 
 #weather-icon {
-    width: 100px;
-    margin: 20px auto;
+    width: 200px;
+    margin: 0 auto 10px;
     margin-bottom: 0;
     display: none;
     height: 200px;
 }
 
 #hourly-forecast {
+    overflow-x: auto;
     display: flex;
     justify-content: space-between;
     margin-top: 50px;
@@ -97,7 +110,7 @@ button:hover {
 .hourly-item{
     flex: 0 0 auto;
     width: 80px;
-    text-align: center;
+    display: flex;
     flex-direction: column;
     align-items: center;
     margin-right: 10px;

@@ -1,5 +1,5 @@
 function getWeather() {
-    const apiKey = 'my key';
+    const apiKey = 'd855b2bb6ca56e1f0e5e85b2f1b6788a';
     const city = document.getElementById('city').value;
 
     if (!city) {
@@ -7,11 +7,9 @@ function getWeather() {
         return;
     }
 
-    const currentWeatherUrl= `https://api.openweathermap.org/data
-    /2.5/weather?q=${city}&appid=${apiKey}`;
+    const currentWeatherUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
-    const forecastUrl = `https://api.openweathermap.org/data/
-    2.5/forecast?q=${city}&appid=${apiKey}`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
     //error handling for faiiled api requests
     fetch(currentWeatherUrl)
@@ -52,7 +50,7 @@ function getWeather() {
             const iconCode = data.weather[0].icon;
             const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
 
-            const temperatureHTML = `<p>${temp}$</p>`;
+            const temperatureHTML = `<p>${temp}°C</p>`;
             const weatherHTML = `<p>${cityName}</p>
             <p>${description}</p>`;
 
@@ -63,6 +61,27 @@ function getWeather() {
             
             showImage();
         }
+    }
+
+function displayHourlyForecast(hourlyData) {
+    const hourlyForecastDiv = document.getElementById('hourly-forecast');
+    const next24Hours = hourlyData.slice(0, 8);
+
+    next24Hours.forEach(element => {
+        const dateTime = new Date(element.dt * 1000);
+        const hour = dateTime.getHours();
+        const temp = Math.round(element.main.temp - 273.15);
+        const iconCode = element.weather[0].icon;
+        const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+
+        const hourlyItemHtml = `
+        <div class="hourly-item">
+            <p>${hour}:00</p>
+            <img src="${iconUrl}" alt="Weather icon">
+            <span>${temp}°C</span>
+            </div>`;
+            hourlyForecastDiv.innerHTML += hourlyItemHtml;
+    });
 }
 
 function showImage() {
